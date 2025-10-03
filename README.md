@@ -11,7 +11,7 @@ I implemented a lightweight, on-device pipeline to compute SpO2 using a GY-MAX30
 - `firmware/SpO2Estimator.h/.cpp` — Streaming estimator: DC removal, low-pass smoothing, beat detection, per-beat AC extraction, ratio calculation, per-beat SpO2, and averaging.
 - `test/simulate_spo2.py` — Python simulator that generates synthetic red/IR PPG signals with noise for offline tuning.
 
-## How the estimator works (high level)
+## How the estimator works
 
 - **DC removal**: running IIR estimate of DC is subtracted from raw sample to isolate AC.
 - **Low-pass smoothing**: the AC signal is lightly low-pass filtered to stabilize peak detection.
@@ -49,7 +49,7 @@ I implemented a lightweight, on-device pipeline to compute SpO2 using a GY-MAX30
 1. Run the sketch and share the printed sensor part ID. I'll update `MAX3010x.cpp` registers and FIFO order for that MAX30xxx variant.
 2. Collect paired measurements (this device's R and a reference SpO2). I will compute the best-fit calibration parameters A and B for SpO2 = A − B·R.
 
-## Recommended improvements (future work)
+## Possible improvements (future work)
 
 - Bandpass filtering (0.5–5 Hz) implemented in fixed-point for MCU performance.
 - Adaptive peak detection with dynamic thresholds and motion rejection.
